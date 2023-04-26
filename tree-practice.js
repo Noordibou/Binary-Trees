@@ -57,7 +57,24 @@ function getHeight (rootNode) {
 }
 
 function balancedTree (rootNode) {
-  // Your code here
+  const queue = [rootNode];
+
+  while (queue.length) {
+    let current = queue.shift();
+
+    if (Math.abs(getHeight(current.left) - getHeight(current.right)) <= 1) {
+      if (current.left) {
+        queue.push(current.left);
+      } 
+      if (current.right) {
+        queue.push(current.right);
+      }
+    } else {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 function countNodes (rootNode) {
